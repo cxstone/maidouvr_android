@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 应用主题颜色 -->
+    <color name="colorPrimary">#6DBB44</color>
+    <color name="colorBackground">#FFFFFF</color>
+
+    <!-- 文字颜色 -->
+    <color name="colorTextWhite">@android:color/white</color>
+    <color name="colorTextGreen">#6DBB44</color>
+
+</resources>
