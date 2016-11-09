@@ -10,7 +10,7 @@ import android.util.Log;
  */
 
 public class LogUtil {
-    private static final String PREFIX = "[Logger]-->";
+    private static final String PREFIX = "[Maidouvr]-->";
 
     public static void d(String tag, String msg) {
         if (ConstantUtil.System.IS_DEBUG_MODE)

@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.maidouvr.net.HttpUtil;
+import com.maidouvr.utils.ToastUtil;
+
 /**
  * Created by xi.chen01 on 2016/11/8.
  * Project:Maidouvr
@@ -25,13 +28,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     @Override
     protected void onStop() {
-//        HttpUtils.cancelAll(context, tag);
+        HttpUtil.cancelAll(context, tag);
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-//        ToastUtils.cancel();
+        ToastUtil.cancel();
         super.onDestroy();
     }
 }

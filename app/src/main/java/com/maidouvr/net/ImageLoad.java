@@ -7,6 +7,7 @@ import com.bumptech.glide.BitmapRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.maidouvr.R;
+import com.maidouvr.utils.LogUtil;
 
 /**
  * 基于Glide图片加载框架工具类封装
@@ -17,6 +18,7 @@ import com.maidouvr.R;
  */
 
 public class ImageLoad {
+    public static final String TAG = "Network Image";
 
     public enum ScaleType {
         CENTER_CROP, FIT_CENTER
@@ -78,6 +80,7 @@ public class ImageLoad {
      * 加载网络图片
      */
     private static void loadImgFromNet(Context context, ImageView imageView, String url, int defaultRes, ScaleType scaleType) {
+        LogUtil.d(TAG + " URL", url == null ? "NULL" : url);
         BitmapRequestBuilder builder = Glide.with(context)
                 .load(url)
                 .asBitmap()

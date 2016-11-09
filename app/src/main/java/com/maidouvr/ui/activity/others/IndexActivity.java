@@ -8,8 +8,11 @@ import android.view.View;
 import com.maidouvr.R;
 import com.maidouvr.ui.activity.BaseActivity;
 import com.maidouvr.ui.fragment.index.MyFragment;
+import com.maidouvr.utils.ToastUtil;
 
 public class IndexActivity extends BaseActivity {
+    private long BACK_PRESSED;
+
     public static final int TAB_MY = 0;
 
     private MyFragment myFragment;
@@ -33,6 +36,16 @@ public class IndexActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (BACK_PRESSED + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+        } else {
+            ToastUtil.show(this, "再按一次退出应用");
+            BACK_PRESSED = System.currentTimeMillis();
+        }
     }
 
     //切换Fragment

@@ -7,7 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.maidouvr.R;
+import com.maidouvr.model.response.test.CategoryResponse;
+import com.maidouvr.net.ErrorInfo;
+import com.maidouvr.net.HttpLoad;
 import com.maidouvr.net.ImageLoad;
+import com.maidouvr.net.ResponseCallback;
 import com.maidouvr.ui.fragment.BaseFragment;
 
 /**
@@ -30,6 +34,18 @@ public class MyFragment extends BaseFragment {
     private void initView(View view) {
         ivTest = (ImageView) view.findViewById(R.id.iv_test);
         ImageLoad.loadImg(context, ivTest, "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png");
+
+        HttpLoad.TestModule.getCategory(context, tag, new ResponseCallback<CategoryResponse>() {
+            @Override
+            public void onRequestSuccess(CategoryResponse result) {
+
+            }
+
+            @Override
+            public void onRequestFailed(ErrorInfo error) {
+
+            }
+        });
     }
 
     @Override

@@ -4,6 +4,7 @@
     <!-- 应用主题颜色 -->
     <color name="colorPrimary">#6DBB44</color>
     <color name="colorBackground">#FFFFFF</color>
+    <color name="colorToastBackground">#CC000000</color>
 
     <!-- 文字颜色 -->
     <color name="colorTextWhite">@android:color/white</color>
