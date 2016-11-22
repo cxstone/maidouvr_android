@@ -22,14 +22,19 @@ public abstract class ResponseCallback<T> implements Response.ErrorListener, Res
     @Override
     public void onResponse(T result) {
         if (result == null) {
-            onRequestFailed(new ErrorInfo(ErrorInfo.GENERAL_CODE, "出错了", "返回实体为空"));
+            onRequestFailed(new ErrorInfo(ErrorInfo.GENERAL_CODE, "出错了", "接口返回实体为空"));
             return;
         }
 
         if (result instanceof ResponseBase) {
-            onRequestSuccess(result);
+            ResponseBase response = (ResponseBase) result;
+            if ("ok".equals(response.status)) {
+                onRequestSuccess(result);
+            } else {
+                onRequestFailed(new ErrorInfo(ErrorInfo.GENERAL_CODE, response.error, "接口返回错误"));
+            }
         } else {
-            onRequestFailed(new ErrorInfo(ErrorInfo.GENERAL_CODE, "出错了", "请求不支持"));
+            onRequestFailed(new ErrorInfo(ErrorInfo.GENERAL_CODE, "出错了", "接口不支持"));
         }
     }
 

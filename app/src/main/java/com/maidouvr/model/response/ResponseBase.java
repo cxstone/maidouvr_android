@@ -9,4 +9,5 @@ package com.maidouvr.model.response;
 
 public class ResponseBase {
     public String status;
+    public String error;
 }
