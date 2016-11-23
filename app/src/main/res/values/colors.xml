@@ -5,8 +5,10 @@
     <color name="colorPrimary">#6DBB44</color>
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorToastBackground">#CC000000</color>
+    <color name="transparent">#0FFF</color>
 
     <!-- 文字颜色 -->
+    <color name="colorTextNormal">#666666</color>
     <color name="colorTextWhite">@android:color/white</color>
     <color name="colorTextGreen">#6DBB44</color>
 

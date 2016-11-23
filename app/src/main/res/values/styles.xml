@@ -7,4 +7,11 @@
         <item name="android:windowBackground">@color/colorBackground</item>
     </style>
 
+    <!-- 自定义loading dialog -->
+    <style name="LoadingDialogStyle" parent="Base.AlertDialog.AppCompat">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
 </resources>

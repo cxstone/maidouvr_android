@@ -3,8 +3,8 @@ package com.maidouvr.net;
 import android.content.Context;
 
 import com.android.volley.Request;
-import com.maidouvr.model.response.test.CategoryResponse;
-import com.maidouvr.utils.ConstantUtil;
+import com.maidouvr.model.response.hybris.HybrisBase;
+import com.maidouvr.utils.APIManager;
 
 import java.util.HashMap;
 
@@ -18,14 +18,20 @@ import java.util.HashMap;
 
 public class HttpLoad {
 
-    public static abstract class TestModule {
-        public static void getCategory(Context context, String tag, ResponseCallback<CategoryResponse> callback) {
-            final HashMap<String, String> params = new HashMap<>();
-            params.put("id", "1");
-            params.put("page", "1");
-            params.put("count", "1");
+    public static abstract class UserModule {
+        //用户登录
+        public static void login(Context context,
+                                 String tag,
+                                 String account,
+                                 String password,
+                                 ResponseCallback<HybrisBase> callback) {
 
-            GsonRequest<CategoryResponse> request = new GsonRequest<>(Request.Method.POST, ConstantUtil.API.Test.GET_CATEGORY, CategoryResponse.class, null, params, callback);
+            final HashMap<String, String> params = new HashMap<>();
+            params.put("channel", "yxtapp");
+            params.put("username", account);
+            params.put("password", password);
+
+            GsonRequest<HybrisBase> request = new GsonRequest<>(Request.Method.POST, APIManager.User.LOGIN, HybrisBase.class, null, params, callback);
             HttpUtil.getInstance(context).request(tag, request);
         }
     }

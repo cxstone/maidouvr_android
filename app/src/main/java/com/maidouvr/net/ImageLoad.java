@@ -18,7 +18,7 @@ import com.maidouvr.utils.LogUtil;
  */
 
 public class ImageLoad {
-    public static final String TAG = "Network Image";
+    private static final String TAG = "Network Image";
 
     public enum ScaleType {
         CENTER_CROP, FIT_CENTER

@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">麦逗VR</string>
+    <string name="app_name">一心到家</string>
+
+    <!-- 网络加载提示语 -->
+    <string name="load_normal">加载中…</string>
+
 </resources>

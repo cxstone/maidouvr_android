@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.maidouvr.utils.GsonUtil;
 import com.maidouvr.utils.LogUtil;
 
 import java.io.UnsupportedEncodingException;
@@ -25,7 +26,7 @@ public class GsonRequest<T> extends Request<T> {
     private static final String TAG = "Network Request";
     private static final int SOCKET_TIMEOUT = 20 * 1000;
 
-    private final Gson gson = new Gson();
+    private final Gson gson = GsonUtil.getGson();
     private final Class<T> clazz;
     private final Map<String, String> headers;
     private final Map<String, String> parameters;

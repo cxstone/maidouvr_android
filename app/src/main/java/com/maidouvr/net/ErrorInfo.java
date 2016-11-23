@@ -14,6 +14,12 @@ public class ErrorInfo {
 
     //没有数据返回
     public static final int GENERAL_CODE = 0;
+    //手机已经被注册
+    public static final int MOBILE_REGISTER_CODE = 100;
+    //Token失效
+    public static final int TOKEN_UNAVAILABLE_CODE = 130;
+    //手机短信验证码还在有效期内
+    public static final int MESSAGE_CODE_AVAILABLE_CODE = 150;
 
     public int code;
     public String message;
