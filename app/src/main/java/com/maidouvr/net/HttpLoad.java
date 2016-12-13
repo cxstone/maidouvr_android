@@ -36,4 +36,11 @@ public class HttpLoad {
         }
     }
 
+    public static abstract class ProductModule {
+        //获取商品详情
+        public static void getProductDetail(Context context, String productCode) {
+
+        }
+    }
+
 }
