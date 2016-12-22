@@ -1,5 +1,6 @@
 package com.maidouvr.ui.activity.others;
 
+import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -7,10 +8,13 @@ import android.view.View;
 
 import com.maidouvr.R;
 import com.maidouvr.ui.activity.BaseActivity;
+import com.maidouvr.ui.fragment.dialog.PermissionDialogFragment;
 import com.maidouvr.ui.fragment.index.MyFragment;
 import com.maidouvr.utils.ToastUtil;
 
-public class IndexActivity extends BaseActivity {
+public class IndexActivity extends BaseActivity implements
+        MyFragment.MyFragmentListener,
+        PermissionDialogFragment.PermissionDialogListener {
     private long BACK_PRESSED;
 
     public static final int TAB_MY = 0;
@@ -72,5 +76,19 @@ public class IndexActivity extends BaseActivity {
         if (myFragment != null) {
             transaction.hide(myFragment);
         }
+    }
+
+    @Override
+    public void onMyFragmentPermission(String message) {
+        DialogFragment dialogFragment = new PermissionDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("message", message);
+        dialogFragment.setArguments(bundle);
+        dialogFragment.show(getFragmentManager(), "");
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        myFragment.applyPermission();
     }
 }
