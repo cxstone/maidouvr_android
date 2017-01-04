@@ -49,7 +49,7 @@ public class ConstantUtil {
 
     //网络接口HOST
     public static abstract class HOST {
-        public static String HOST_HYBRIS = "https://stage.hxyxt.com";
+        public static String HOST_HYBRIS = "https://www1.hxyxt.com";
         public static String HOST_PHP = "http://pt.yxtmart.cn";
     }
 

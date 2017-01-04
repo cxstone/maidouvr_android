@@ -20,28 +20,28 @@ public class HttpUtil {
 
     private static HttpUtil mInstance;
     private static RequestQueue mRequestQueue;
-    private static Context mCtx;
+    private Context context;
 
     private HttpUtil(Context context) {
-        mCtx = context;
+        this.context = context;
         mRequestQueue = getRequestQueue();
     }
 
     private RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
-            mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
+            mRequestQueue = Volley.newRequestQueue(context.getApplicationContext());
         }
         return mRequestQueue;
     }
 
-    public static synchronized HttpUtil getInstance(Context context) {
+    static synchronized HttpUtil getInstance(Context context) {
         if (mInstance == null) {
-            mInstance = new HttpUtil(context);
+            mInstance = new HttpUtil(context.getApplicationContext());
         }
         return mInstance;
     }
 
-    public <T> void request(String tag, Request<T> request) {
+    <T> void request(String tag, Request<T> request) {
         if (request != null) {
             request.setTag(tag);
             getRequestQueue().add(request);

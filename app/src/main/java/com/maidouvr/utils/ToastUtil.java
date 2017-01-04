@@ -37,9 +37,10 @@ public class ToastUtil {
             return;
         }
         if (mToast == null) {
-            final LinearLayout view = new LinearLayout(context);
-            LayoutInflater.from(context).inflate(R.layout.toast, view);
-            mToast = new Toast(context);
+            Context mContext = context.getApplicationContext();
+            final LinearLayout view = new LinearLayout(mContext);
+            LayoutInflater.from(mContext).inflate(R.layout.toast, view);
+            mToast = new Toast(mContext);
             mToast.setGravity(Gravity.CENTER, 0, 0);
             mToast.setDuration(Toast.LENGTH_SHORT);
             mToast.setView(view);

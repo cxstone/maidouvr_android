@@ -24,6 +24,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.maidouvr.R;
+import com.maidouvr.model.response.hybris.HybrisBase;
+import com.maidouvr.net.ErrorInfo;
+import com.maidouvr.net.HttpLoad;
+import com.maidouvr.net.ResponseCallback;
 import com.maidouvr.ui.fragment.BaseFragment;
 import com.maidouvr.utils.ToastUtil;
 
@@ -69,7 +73,31 @@ public class MyFragment extends BaseFragment {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.btn_head) {
-            checkStoragePermission();
+//            checkStoragePermission();
+            HttpLoad.ProductModule.getProductDetail(context, tag, "100016474", new ResponseCallback<HybrisBase>() {
+                @Override
+                public void onRequestSuccess(HybrisBase result) {
+                    ToastUtil.show(context, "Success");
+                }
+
+                @Override
+                public void onRequestFailed(ErrorInfo error) {
+                    ToastUtil.show(context, error);
+                }
+            });
+
+
+            HttpLoad.UserModule.login(context, tag, "18602808274", "000000", new ResponseCallback<HybrisBase>() {
+                @Override
+                public void onRequestSuccess(HybrisBase result) {
+                    ToastUtil.show(context, "Success");
+                }
+
+                @Override
+                public void onRequestFailed(ErrorInfo error) {
+                    ToastUtil.show(context, error);
+                }
+            });
         }
     }
 

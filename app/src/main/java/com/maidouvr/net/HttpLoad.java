@@ -38,8 +38,14 @@ public class HttpLoad {
 
     public static abstract class ProductModule {
         //获取商品详情
-        public static void getProductDetail(Context context, String productCode) {
+        public static void getProductDetail(Context context,
+                                            String tag,
+                                            String productCode,
+                                            ResponseCallback<HybrisBase> callback) {
+            callback.setContext(context);
 
+            GsonRequest<HybrisBase> request = new GsonRequest<>(Request.Method.GET, String.format(APIManager.Product.API_GET_PRODUCT_DETAIL, productCode), HybrisBase.class, null, null, callback);
+            HttpUtil.getInstance(context).request(tag, request);
         }
     }
 

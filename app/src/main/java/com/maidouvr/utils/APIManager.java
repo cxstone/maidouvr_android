@@ -13,4 +13,10 @@ public class APIManager {
                 + "/yxtws/v2/hxyxt/app/customer/login";
     }
 
+    public abstract static class Product {
+        //获取商品详情
+        public static final String API_GET_PRODUCT_DETAIL = ConstantUtil.HOST.HOST_HYBRIS
+                + "/yxtws/v2/hxyxt/app/product/detail/%1$s?channel=yxtapp";
+    }
+
 }

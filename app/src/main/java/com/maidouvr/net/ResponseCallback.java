@@ -1,6 +1,7 @@
 package com.maidouvr.net;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -8,6 +9,7 @@ import com.maidouvr.model.response.hybris.HybrisBase;
 import com.maidouvr.model.response.hybris.HybrisState;
 import com.maidouvr.model.response.php.PHPBase;
 import com.maidouvr.model.response.php.PHPState;
+import com.maidouvr.ui.activity.others.DrawableActivity;
 
 /**
  * Created by xi.chen01 on 2016/11/9.
@@ -63,13 +65,12 @@ public abstract class ResponseCallback<T> implements Response.ErrorListener, Res
     }
 
     public void setContext(Context context) {
-        this.context = context;
+        this.context = context.getApplicationContext();
     }
-
 
     private void goToLogin() {
         if (context != null) {
-//            context.startActivity(new Intent(context, LoginActivity.class));
+            context.startActivity(new Intent(context, DrawableActivity.class));
         }
     }
 
