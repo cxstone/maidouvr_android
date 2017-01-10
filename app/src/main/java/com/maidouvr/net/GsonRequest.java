@@ -32,7 +32,7 @@ public class GsonRequest<T> extends Request<T> {
     private final Map<String, String> parameters;
     private final Response.Listener<T> listener;
 
-    public GsonRequest(int method, String url, Class<T> clazz, Map<String, String> headers, Map<String, String> parameters, ResponseCallback<T> callback) {
+    public GsonRequest(int method, String url, Class<T> clazz, Map<String, String> headers, Map<String, String> parameters, final ResponseCallback<T> callback) {
         super(method, url, callback);
         this.clazz = clazz;
         this.headers = headers;
@@ -77,5 +77,6 @@ public class GsonRequest<T> extends Request<T> {
             return Response.error(new ParseError(e));
         }
     }
+
 
 }

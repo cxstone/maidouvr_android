@@ -1,11 +1,17 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorPrimary</item>
+    <style name="AppTheme" parent="AppBaseTheme" />
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorTextWhite</item>
         <item name="android:windowBackground">@color/colorBackground</item>
+    </style>
+
+    <style name="ActivityThemeStart" parent="AppBaseTheme">
+        <item name="colorPrimaryDark">@color/colorBackground</item>
     </style>
 
     <!-- 自定义loading dialog -->
@@ -13,6 +19,33 @@
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+    <style name="DialogStyle" parent="Base.AlertDialog.AppCompat">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowFixedWidthMajor">90%</item>
+        <item name="windowFixedWidthMinor">90%</item>
+        <item name="android:textColorPrimary">@color/colorTextNormal</item>
+        <!--<item name="buttonBarPositiveButtonStyle">@style/DialogPositiveButtonStyle</item>-->
+        <!--<item name="buttonBarNegativeButtonStyle">@style/DialogNegativeButtonStyle</item>-->
+    </style>
+
+    <style name="CodeFont" parent="Base.TextAppearance.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#00FF00</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="CodeFont.Red">
+        <item name="android:textColor">#FF0000</item>
+    </style>
+
+    <style name="CodeFont.Red.Big">
+        <item name="android:textSize">30sp</item>
     </style>
 
 </resources>

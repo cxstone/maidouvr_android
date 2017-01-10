@@ -42,8 +42,6 @@ public class HttpLoad {
                                             String tag,
                                             String productCode,
                                             ResponseCallback<HybrisBase> callback) {
-            callback.setContext(context);
-
             GsonRequest<HybrisBase> request = new GsonRequest<>(Request.Method.GET, String.format(APIManager.Product.API_GET_PRODUCT_DETAIL, productCode), HybrisBase.class, null, null, callback);
             HttpUtil.getInstance(context).request(tag, request);
         }

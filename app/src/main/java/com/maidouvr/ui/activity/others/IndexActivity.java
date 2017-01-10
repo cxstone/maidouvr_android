@@ -4,7 +4,6 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.View;
 
 import com.maidouvr.R;
 import com.maidouvr.ui.activity.BaseActivity;
@@ -35,11 +34,6 @@ public class IndexActivity extends BaseActivity implements
         fragmentManager = getFragmentManager();
 
         setTabSelection(position);
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
     @Override

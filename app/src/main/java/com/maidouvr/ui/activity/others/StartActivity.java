@@ -3,7 +3,6 @@ package com.maidouvr.ui.activity.others;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 
 import com.maidouvr.R;
 import com.maidouvr.ui.activity.BaseActivity;
@@ -20,11 +19,6 @@ public class StartActivity extends BaseActivity {
 
     private void initView() {
         new StartAsyncTask().execute();
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
     @Override
@@ -48,7 +42,7 @@ public class StartActivity extends BaseActivity {
         @Override
         protected void onPostExecute(String s) {
             if (!isExit) {
-                Intent intent = new Intent(context, IndexActivity.class);
+                Intent intent = new Intent(context, DrawableActivity.class);
                 startActivity(intent);
                 finish();
             }

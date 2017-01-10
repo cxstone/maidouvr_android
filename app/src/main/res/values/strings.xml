@@ -1,4 +1,16 @@
 <resources>
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
     <string name="app_name">一心到家</string>
 
     <!-- 网络加载提示语 -->

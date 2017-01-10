@@ -2,8 +2,10 @@
 <resources>
 
     <!-- 应用主题颜色 -->
-    <color name="colorPrimary">#6DBB44</color>
-    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorAccent">#FD87A9</color>
+    <color name="colorBackground">#EEFFFF</color>
     <color name="colorToastBackground">#CC000000</color>
     <color name="transparent">#0FFF</color>
 

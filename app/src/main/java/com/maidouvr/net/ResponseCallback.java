@@ -65,7 +65,7 @@ public abstract class ResponseCallback<T> implements Response.ErrorListener, Res
     }
 
     public void setContext(Context context) {
-        this.context = context.getApplicationContext();
+        this.context = context;
     }
 
     private void goToLogin() {

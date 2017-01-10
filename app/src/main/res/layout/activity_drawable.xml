@@ -1,10 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <com.maidouvr.widget.DrawableView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="center"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-</RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <Spinner
+        android:id="@+id/planets_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp" />
+
+
+    <!--<TextView-->
+    <!--style="@style/CodeFont"-->
+    <!--android:text="test" />-->
+
+    <!--<TextView-->
+    <!--style="@style/CodeFont.Red"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="test" />-->
+
+    <!--<TextView-->
+    <!--style="@style/CodeFont.Red.Big"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="test" />-->
+
+    <!--<EditText-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:hint="content" />-->
+
+</LinearLayout>
