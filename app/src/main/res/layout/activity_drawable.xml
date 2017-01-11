@@ -24,25 +24,23 @@
         android:layout_margin="16dp" />
 
 
-    <!--<TextView-->
-    <!--style="@style/CodeFont"-->
-    <!--android:text="test" />-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test" />
 
-    <!--<TextView-->
-    <!--style="@style/CodeFont.Red"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="test" />-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="shdshj" />
 
-    <!--<TextView-->
-    <!--style="@style/CodeFont.Red.Big"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="test" />-->
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-    <!--<EditText-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:hint="content" />-->
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2131" />
 
 </LinearLayout>

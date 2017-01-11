@@ -2,7 +2,6 @@ package com.maidouvr.ui.fragment.index;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -13,21 +12,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v13.app.FragmentCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.maidouvr.R;
-import com.maidouvr.model.response.hybris.HybrisBase;
-import com.maidouvr.net.ErrorInfo;
-import com.maidouvr.net.HttpLoad;
-import com.maidouvr.net.ResponseCallback;
+import com.maidouvr.ui.activity.others.DrawableActivity;
 import com.maidouvr.ui.fragment.BaseFragment;
 import com.maidouvr.utils.ToastUtil;
 
@@ -43,17 +35,12 @@ import java.util.List;
  */
 
 public class MyFragment extends BaseFragment {
-    //上传头像的存储空间权限
-    private static final int PERMISSION_HEAD = 1;
-
     private static final int REQUEST_CAMERA = 100;
     private static final int REQUEST_GALLERY = 200;
     private static final int REQUEST_CROP = 300;
 
-    private Button btnHead;
     private ImageView ivIcon;
 
-    private MyFragmentListener listener;
     private String fileName = "xxx.jpg";
     private Uri uri;
 
@@ -62,9 +49,9 @@ public class MyFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         uri = getUri();
 
-        btnHead = (Button) view.findViewById(R.id.btn_head);
+        view.findViewById(R.id.btn_next).setOnClickListener(this);
+        view.findViewById(R.id.btn_head).setOnClickListener(this);
         ivIcon = (ImageView) view.findViewById(R.id.iv_icon);
-        btnHead.setOnClickListener(this);
 
         return view;
     }
@@ -73,32 +60,40 @@ public class MyFragment extends BaseFragment {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.btn_head) {
-//            checkStoragePermission();
-            HttpLoad.ProductModule.getProductDetail(context, tag, "100016474", new ResponseCallback<HybrisBase>() {
-                @Override
-                public void onRequestSuccess(HybrisBase result) {
-                    ToastUtil.show(context, "Success");
-                }
-
-                @Override
-                public void onRequestFailed(ErrorInfo error) {
-                    ToastUtil.show(context, error);
-                }
-            });
-
-
-            HttpLoad.UserModule.login(context, tag, "18602808274", "000000", new ResponseCallback<HybrisBase>() {
-                @Override
-                public void onRequestSuccess(HybrisBase result) {
-                    ToastUtil.show(context, "Success");
-                }
-
-                @Override
-                public void onRequestFailed(ErrorInfo error) {
-                    ToastUtil.show(context, error);
-                }
-            });
+            requestPermission(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE});
+//            HttpLoad.ProductModule.getProductDetail(context, tag, "100016474", new ResponseCallback<HybrisBase>() {
+//                @Override
+//                public void onRequestSuccess(HybrisBase result) {
+//                    ToastUtil.show(context, "Success");
+//                }
+//
+//                @Override
+//                public void onRequestFailed(ErrorInfo error) {
+//                    ToastUtil.show(context, error);
+//                }
+//            });
+//
+//
+//            HttpLoad.UserModule.login(context, tag, "18602808274", "000000", new ResponseCallback<HybrisBase>() {
+//                @Override
+//                public void onRequestSuccess(HybrisBase result) {
+//                    ToastUtil.show(context, "Success");
+//                }
+//
+//                @Override
+//                public void onRequestFailed(ErrorInfo error) {
+//                    ToastUtil.show(context, error);
+//                }
+//            });
+        } else if (id == R.id.btn_next) {
+            Intent intent = new Intent(context, DrawableActivity.class);
+            startActivity(intent);
         }
+    }
+
+    @Override
+    public void onRequestPermissionSuccess() {
+        openCamera();
     }
 
     @Override
@@ -135,30 +130,6 @@ public class MyFragment extends BaseFragment {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_HEAD:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    openCamera();
-                }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            listener = (MyFragmentListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement MyFragmentListener");
-        }
-
-    }
-
     private void openCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
@@ -182,15 +153,6 @@ public class MyFragment extends BaseFragment {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("image/*");
         startActivityForResult(intent, REQUEST_GALLERY);
-    }
-
-    private void checkStoragePermission() {
-        int permission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            listener.onMyFragmentPermission("为了您能正常使用该功能，需要存储空间权限");
-        } else {
-            openCamera();
-        }
     }
 
     private Uri getUri() {
@@ -233,11 +195,4 @@ public class MyFragment extends BaseFragment {
         startActivityForResult(Intent.createChooser(intent, "选择剪裁工具"), requestCode);
     }
 
-    public void applyPermission() {
-        FragmentCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_HEAD);
-    }
-
-    public interface MyFragmentListener {
-        void onMyFragmentPermission(String message);
-    }
 }

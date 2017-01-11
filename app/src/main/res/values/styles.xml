@@ -8,44 +8,58 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/colorTextWhite</item>
         <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="alertDialogTheme">@style/DialogStyle</item>
+        <item name="buttonStyle">@style/ButtonStyle</item>
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
     </style>
 
-    <style name="ActivityThemeStart" parent="AppBaseTheme">
-        <item name="colorPrimaryDark">@color/colorBackground</item>
+    <!-- Dialog相关样式  开始 -->
+    <style name="DialogStyle" parent="Base.Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/colorTextWhite</item>
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="buttonBarPositiveButtonStyle">@style/DialogButtonStyle.Positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/DialogButtonStyle.Negative</item>
     </style>
 
-    <!-- 自定义loading dialog -->
-    <style name="LoadingDialogStyle" parent="Base.AlertDialog.AppCompat">
+    <style name="DialogStyle.Warm">
+        <item name="android:textColorPrimary">#F00</item>
+    </style>
+
+    <style name="DialogStyle.Load">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@color/transparent</item>
     </style>
 
-    <style name="DialogStyle" parent="Base.AlertDialog.AppCompat">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="windowFixedWidthMajor">90%</item>
-        <item name="windowFixedWidthMinor">90%</item>
-        <item name="android:textColorPrimary">@color/colorTextNormal</item>
-        <!--<item name="buttonBarPositiveButtonStyle">@style/DialogPositiveButtonStyle</item>-->
-        <!--<item name="buttonBarNegativeButtonStyle">@style/DialogNegativeButtonStyle</item>-->
+    <style name="DialogButtonStyle" parent="Base.Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textSize">@dimen/text_size_14sp</item>
     </style>
 
-    <style name="CodeFont" parent="Base.TextAppearance.AppCompat">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">#00FF00</item>
-        <item name="android:textSize">20sp</item>
+    <style name="DialogButtonStyle.Positive">
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-    <style name="CodeFont.Red">
-        <item name="android:textColor">#FF0000</item>
+    <style name="DialogButtonStyle.Negative">
+        <item name="android:textColor">@color/colorTextNormal</item>
+    </style>
+    <!-- Dialog相关样式  结束 -->
+
+    <!-- Button相关样式  开始 -->
+    <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button">
+        <item name="android:textColor">@color/colorTextNormal</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <!-- Button相关样式  结束 -->
+
+    <!-- TextView相关样式  开始 -->
+    <style name="TextViewStyle" parent="Base.TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorTextNormal</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="CodeFont.Red.Big">
-        <item name="android:textSize">30sp</item>
+    <style name="TextViewStyle.Red">
+        <item name="android:textColor">#F00</item>
     </style>
+    <!-- TextView相关样式  结束 -->
 
 </resources>

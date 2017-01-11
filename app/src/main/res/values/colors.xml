@@ -11,7 +11,7 @@
 
     <!-- 文字颜色 -->
     <color name="colorTextNormal">#666666</color>
-    <color name="colorTextWhite">@android:color/white</color>
+    <color name="colorTextWhite">#FFFFFF</color>
     <color name="colorTextGreen">#6DBB44</color>
 
 </resources>

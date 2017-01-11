@@ -1,20 +1,17 @@
 package com.maidouvr.ui.activity;
 
+import android.app.DialogFragment;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.maidouvr.R;
 import com.maidouvr.net.HttpUtil;
+import com.maidouvr.ui.fragment.dialog.PermissionWarmDialogFragment;
 import com.maidouvr.utils.ToastUtil;
 
 /**
@@ -25,7 +22,7 @@ import com.maidouvr.utils.ToastUtil;
  */
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final int PERMISSION_REQUEST = 1000;
+    private static final int PERMISSION_REQUEST = 1001;
     public Context context;
     public String tag;
 
@@ -73,27 +70,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     //权限被拒绝且不在询问时对话框
     private void showPermissionWarmDialog() {
-        new AlertDialog.Builder(context, R.style.DialogStyle)
-                .setMessage("警告：缺少使用该功能的必要权限")
-                .setPositiveButton("前去设置", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                        intent.setData(Uri.fromParts("package", context.getPackageName(), null));
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                    }
-                })
-                .setNegativeButton("退出", null).show();
+        DialogFragment dialogFragment = new PermissionWarmDialogFragment();
+        dialogFragment.show(getFragmentManager(), "");
     }
 
     //申请权限
-    public void requestPermission(String[] permissions) {
-        if (permissions == null || permissions.length == 0) {
-            this.onRequestPermissionSuccess();
-            return;
-        }
-
+    public void requestPermission(@NonNull String[] permissions) {
         for (String permission : permissions) {
             if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(BaseActivity.this, permissions, PERMISSION_REQUEST);

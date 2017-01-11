@@ -29,7 +29,7 @@ public class LoadDialogUtil {
     }
 
     public static Dialog createLoadingDialog(Context context, String tips) {
-        final Dialog loadingDialog = new Dialog(context, R.style.LoadingDialogStyle);
+        final Dialog loadingDialog = new Dialog(context, R.style.DialogStyle_Load);
         loadingDialog.setCanceledOnTouchOutside(false);
 
         //加载布局

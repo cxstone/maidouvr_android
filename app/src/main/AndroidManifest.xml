@@ -30,8 +30,7 @@
             android:name=".ui.activity.others.StartActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/ActivityThemeStart">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

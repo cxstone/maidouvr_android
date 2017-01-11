@@ -42,7 +42,7 @@ public class StartActivity extends BaseActivity {
         @Override
         protected void onPostExecute(String s) {
             if (!isExit) {
-                Intent intent = new Intent(context, DrawableActivity.class);
+                Intent intent = new Intent(context, IndexActivity.class);
                 startActivity(intent);
                 finish();
             }
