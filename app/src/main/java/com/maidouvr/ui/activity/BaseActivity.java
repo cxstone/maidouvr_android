@@ -23,8 +23,11 @@ import com.maidouvr.utils.ToastUtil;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int PERMISSION_REQUEST = 1001;
+
     public Context context;
     public String tag;
+
+    private int requestCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                         return;
                     }
                 }
-                this.onRequestPermissionSuccess();
+                this.onRequestPermissionSuccess(this.requestCode);
                 break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -75,7 +78,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     //申请权限
-    public void requestPermission(@NonNull String[] permissions) {
+    public void requestPermission(int requestCode, @NonNull String[] permissions) {
+        this.requestCode = requestCode;
         for (String permission : permissions) {
             if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(BaseActivity.this, permissions, PERMISSION_REQUEST);
@@ -83,10 +87,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             }
         }
 
-        this.onRequestPermissionSuccess();
+        this.onRequestPermissionSuccess(this.requestCode);
     }
 
     //申请权限成功回调
-    public void onRequestPermissionSuccess() {
+    public void onRequestPermissionSuccess(int requestCode) {
     }
 }

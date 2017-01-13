@@ -35,6 +35,8 @@ import java.util.List;
  */
 
 public class MyFragment extends BaseFragment {
+    private static final int REQUEST_PERMISSION_1 = 1;
+
     private static final int REQUEST_CAMERA = 100;
     private static final int REQUEST_GALLERY = 200;
     private static final int REQUEST_CROP = 300;
@@ -60,31 +62,7 @@ public class MyFragment extends BaseFragment {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.btn_head) {
-            requestPermission(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE});
-//            HttpLoad.ProductModule.getProductDetail(context, tag, "100016474", new ResponseCallback<HybrisBase>() {
-//                @Override
-//                public void onRequestSuccess(HybrisBase result) {
-//                    ToastUtil.show(context, "Success");
-//                }
-//
-//                @Override
-//                public void onRequestFailed(ErrorInfo error) {
-//                    ToastUtil.show(context, error);
-//                }
-//            });
-//
-//
-//            HttpLoad.UserModule.login(context, tag, "18602808274", "000000", new ResponseCallback<HybrisBase>() {
-//                @Override
-//                public void onRequestSuccess(HybrisBase result) {
-//                    ToastUtil.show(context, "Success");
-//                }
-//
-//                @Override
-//                public void onRequestFailed(ErrorInfo error) {
-//                    ToastUtil.show(context, error);
-//                }
-//            });
+            requestPermission(REQUEST_PERMISSION_1, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE});
         } else if (id == R.id.btn_next) {
             Intent intent = new Intent(context, DrawableActivity.class);
             startActivity(intent);
@@ -92,8 +70,10 @@ public class MyFragment extends BaseFragment {
     }
 
     @Override
-    public void onRequestPermissionSuccess() {
-        openCamera();
+    public void onRequestPermissionSuccess(int requestCode) {
+        if (requestCode == REQUEST_PERMISSION_1) {
+            openCamera();
+        }
     }
 
     @Override

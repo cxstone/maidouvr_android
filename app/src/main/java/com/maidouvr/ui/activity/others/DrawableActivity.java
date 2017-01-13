@@ -2,6 +2,7 @@ package com.maidouvr.ui.activity.others;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DrawableActivity extends BaseActivity {
+    private static final int REQUEST_PERMISSION_1 = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +28,12 @@ public class DrawableActivity extends BaseActivity {
 
     private void initView() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("首页");
-        toolbar.setNavigationIcon(R.mipmap.ic_menu_white);
+        toolbar.setTitle("Test");
         setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
 
         Spinner spinner = (Spinner) findViewById(R.id.planets_spinner);
@@ -56,7 +61,7 @@ public class DrawableActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                requestPermission(new String[]{Manifest.permission.CAMERA});
+                requestPermission(REQUEST_PERMISSION_1, new String[]{Manifest.permission.CAMERA});
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -64,7 +69,9 @@ public class DrawableActivity extends BaseActivity {
     }
 
     @Override
-    public void onRequestPermissionSuccess() {
-        ToastUtil.show(context, "权限申请成功！");
+    public void onRequestPermissionSuccess(int requestCode) {
+        if (requestCode == REQUEST_PERMISSION_1) {
+            ToastUtil.show(context, "权限申请成功！");
+        }
     }
 }

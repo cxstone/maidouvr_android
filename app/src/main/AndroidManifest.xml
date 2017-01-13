@@ -42,7 +42,11 @@
             android:name=".ui.activity.others.IndexActivity"
             android:launchMode="singleTop" />
 
-        <activity android:name=".ui.activity.others.DrawableActivity" />
+        <activity android:name=".ui.activity.others.DrawableActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.activity.others.IndexActivity" />
+        </activity>
 
     </application>
 

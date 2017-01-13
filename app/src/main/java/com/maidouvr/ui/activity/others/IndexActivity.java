@@ -3,6 +3,7 @@ package com.maidouvr.ui.activity.others;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import com.maidouvr.R;
 import com.maidouvr.ui.activity.BaseActivity;
@@ -28,7 +29,10 @@ public class IndexActivity extends BaseActivity {
 
     private void initView() {
         fragmentManager = getFragmentManager();
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("首页");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.mipmap.ic_menu_white);
         setTabSelection(position);
     }
 
