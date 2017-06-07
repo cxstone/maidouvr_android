@@ -19,6 +19,20 @@
         android:layout_marginTop="16dp"
         android:text="上传头像" />
 
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="自定义HOST" />
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="使用默认HOST" />
+
     <ImageView
         android:id="@+id/iv_icon"
         android:layout_width="200dp"

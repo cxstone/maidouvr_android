@@ -3,8 +3,8 @@ package com.maidouvr.net;
 import android.content.Context;
 
 import com.android.volley.Request;
+import com.maidouvr.api.APIManager;
 import com.maidouvr.model.response.hybris.HybrisBase;
-import com.maidouvr.utils.APIManager;
 
 import java.util.HashMap;
 
@@ -31,20 +31,10 @@ public class HttpLoad {
             params.put("username", account);
             params.put("password", password);
 
-            GsonRequest<HybrisBase> request = new GsonRequest<>(Request.Method.POST, APIManager.User.LOGIN, HybrisBase.class, null, params, callback);
+            GsonRequest<HybrisBase> request = new GsonRequest<>(Request.Method.POST, APIManager.User.API_LOGIN(context), HybrisBase.class, null, params, callback);
             HttpUtil.getInstance(context).request(tag, request);
         }
     }
 
-    public static abstract class ProductModule {
-        //获取商品详情
-        public static void getProductDetail(Context context,
-                                            String tag,
-                                            String productCode,
-                                            ResponseCallback<HybrisBase> callback) {
-            GsonRequest<HybrisBase> request = new GsonRequest<>(Request.Method.GET, String.format(APIManager.Product.API_GET_PRODUCT_DETAIL, productCode), HybrisBase.class, null, null, callback);
-            HttpUtil.getInstance(context).request(tag, request);
-        }
-    }
 
 }

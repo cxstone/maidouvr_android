@@ -18,6 +18,10 @@ public class ConstantUtil {
 
     //SharedPreference中所用的key
     public static abstract class SP {
+        public static abstract class Host {
+            public static final String IS_CUSTOM_HOST = "is_custom_host";
+            public static final String HYBRIS = "hybris";
+        }
 
         public static abstract class APP {
             public static final String ACCESS_TOKEN = "access_token";

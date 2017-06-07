@@ -9,6 +9,22 @@ import android.content.Context;
 
 public class SPManager {
 
+    public static void putHostFlag(Context context, boolean flag) {
+        SPUtil.putBoolean(context, ConstantUtil.SP.Host.IS_CUSTOM_HOST, flag);
+    }
+
+    public static boolean getHostFlag(Context context) {
+        return SPUtil.getBoolean(context, ConstantUtil.SP.Host.IS_CUSTOM_HOST, false);
+    }
+
+    public static void saveHostHybris(Context context, String host) {
+        SPUtil.putString(context, ConstantUtil.SP.Host.HYBRIS, host);
+    }
+
+    public static String getHostHybris(Context context) {
+        return SPUtil.getString(context, ConstantUtil.SP.Host.HYBRIS);
+    }
+
     //保存用户token
     public static void saveUserToken(Context context, String token) {
         SPUtil.putString(context, ConstantUtil.SP.APP.ACCESS_TOKEN, token);

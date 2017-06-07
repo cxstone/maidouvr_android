@@ -19,8 +19,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.maidouvr.R;
-import com.maidouvr.ui.activity.others.DrawableActivity;
+import com.maidouvr.model.response.hybris.HybrisBase;
+import com.maidouvr.net.ErrorInfo;
+import com.maidouvr.net.HttpLoad;
+import com.maidouvr.net.ResponseCallback;
 import com.maidouvr.ui.fragment.BaseFragment;
+import com.maidouvr.utils.SPManager;
 import com.maidouvr.utils.ToastUtil;
 
 import java.io.File;
@@ -45,6 +49,8 @@ public class MyFragment extends BaseFragment {
 
     private String fileName = "xxx.jpg";
     private Uri uri;
+    private long[] mClicks = new long[7];
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,6 +59,8 @@ public class MyFragment extends BaseFragment {
 
         view.findViewById(R.id.btn_next).setOnClickListener(this);
         view.findViewById(R.id.btn_head).setOnClickListener(this);
+        view.findViewById(R.id.btn_add).setOnClickListener(this);
+        view.findViewById(R.id.btn_delete).setOnClickListener(this);
         ivIcon = (ImageView) view.findViewById(R.id.iv_icon);
 
         return view;
@@ -63,9 +71,32 @@ public class MyFragment extends BaseFragment {
         int id = v.getId();
         if (id == R.id.btn_head) {
             requestPermission(REQUEST_PERMISSION_1, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE});
+
         } else if (id == R.id.btn_next) {
-            Intent intent = new Intent(context, DrawableActivity.class);
-            startActivity(intent);
+//            System.arraycopy(mClicks, 1, mClicks, 0, mClicks.length - 1);
+//            mClicks[mClicks.length - 1] = SystemClock.uptimeMillis();
+//            if (mClicks[0] >= (SystemClock.uptimeMillis() - 3000)) {
+//                mClicks = null;
+//                mClicks = new long[7];
+//                Intent intent = new Intent(context, DrawableActivity.class);
+//                startActivity(intent);
+//            }
+            HttpLoad.UserModule.login(context, tag, "18602808274", "000000", new ResponseCallback<HybrisBase>() {
+                @Override
+                public void onRequestSuccess(HybrisBase result) {
+                    ToastUtil.show(context, "success");
+                }
+
+                @Override
+                public void onRequestFailed(ErrorInfo error) {
+                    ToastUtil.show(context, error);
+                }
+            });
+        } else if (id == R.id.btn_add) {
+            SPManager.putHostFlag(context, true);
+            SPManager.saveHostHybris(context, "https://www.baidu.com");
+        } else if (id == R.id.btn_delete) {
+            SPManager.putHostFlag(context, false);
         }
     }
 
